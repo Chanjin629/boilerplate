@@ -40,10 +40,10 @@ userSchema.pre('save',function( next ){
 
     if(user.isModified('password')){
         // 비밀번호 암호화
-        bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.genSalt(saltRounds, function(err, salt) { //비밀번호 가져와서 에러나오면 에러출력 맞으면 salt를 출력해 아래문장으로 내려감
             if(err)return next(err)
         
-            bcrypt.hash(user.password, salt, function(err, hash) {
+            bcrypt.hash(user.password, salt, function(err, hash) {//비밀번호 가져와서 맞으면 salt로 가서 hash(암호화된 비밀번호)출력
                 if(err)return next(err)
                 user.password = hash
                 next()
