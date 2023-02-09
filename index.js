@@ -21,8 +21,9 @@ mongoose.connect(config.mongoURI)
   .catch(err => console.log(err))
 
 app.get('/', (req, res) => {res.send('Hello World!')})
+
 //아직 client 부분을 하지않아서 postman을 통해서 가져온다/
-app.post('api/users/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
   //회원 가입 할때 필요한 정보들을 client에서 가져오면
   //그것들을 데이터베이스에 넣어준다.
 
@@ -37,7 +38,7 @@ app.post('api/users/register', (req, res) => {
     })
 }) 
 
-app.post('api/users/login', (req, res)=>{
+app.post('/api/users/login', (req, res)=>{
   //요청된 이메일을 데이터베이스에서 있는지 찾는다.
   User.findOne({email: req.body.email },(err, user)=>{
     if(!user) {
@@ -56,9 +57,9 @@ app.post('api/users/login', (req, res)=>{
       user.generateToken((err, user)=>{
         if(err) return res.status(400).send(err);
 
-            res.cookie("x_auth", user.token)
-            .status(200)
-            .json({loginSuccess: true, userId: user._id})
+        res.cookie("x_auth", user.token)
+          .status(200)
+          .json({loginSuccess: true, userId: user._id})
       })
     
    })
@@ -66,7 +67,7 @@ app.post('api/users/login', (req, res)=>{
   
   
 })
-app.get('api/users/auth', auth , (req, res)=>{
+app.get('/api/users/auth', auth , (req, res)=>{
   //여가 까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True 라는 말.
   res.status(200).json({
     _id: req.user._id,
