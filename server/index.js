@@ -3,8 +3,8 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const config = require('../config/key');
-const { auth } = require('../middleware/auth');
+const config = require('./config/key');
+const { auth } = require('./middleware/auth');
 const { User } = require("./models/User");
 
 //application/x-www-form-urlencoded
@@ -23,7 +23,7 @@ mongoose.connect(config.mongoURI)
 app.get('/', (req, res) => {res.send('Hello World!')})
 
 app.get('/api/hello',(req, res)=>{
-  res.send("안녕하세요")
+  res.send("hello world!~~~")
 })
 
 //아직 client 부분을 하지않아서 postman을 통해서 가져온다/
