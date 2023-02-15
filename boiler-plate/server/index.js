@@ -22,9 +22,7 @@ mongoose.connect(config.mongoURI)
 
 app.get('/', (req, res) => {res.send('Hello World!')})
 
-app.get('/api/hello',(req, res)=>{
-  res.send("hello world!~~~")
-})
+app.get('/api/hello',(req, res)=>{ res.send("hello world!~~~")})
 
 //아직 client 부분을 하지않아서 postman을 통해서 가져온다/
 app.post('/api/users/register', (req, res) => {
@@ -99,4 +97,5 @@ app.get('/api/users/logout', auth, (req, res) => {
       })
     })
 })
+
 app.listen(port, () => {console.log(`Example app listening on port ${port}`)})

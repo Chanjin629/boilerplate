@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 require("dotenv").config({path:"nodemailer/.env"});
-const nodemailer = require("nodemailer");
+const nodemailer = require("./nodemailer");
 
 const getHTML = async(keyword) => {
     try{
